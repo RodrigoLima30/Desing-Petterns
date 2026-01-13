@@ -112,6 +112,8 @@ O Strategy é composto por:
 2️⃣ Concrete Strategies (Implementações)
 3️⃣ Context (Classe que usa a Strategy)
 
+---
+
 ### 1️⃣ Strategy — Interface
 
 ```ts
@@ -128,6 +130,8 @@ interface Tax {
 -Garante que todas as estratégias tenham o mesmo comportamento
 
 -Permite polimorfismo
+
+---
 
 ### 2️⃣ Concrete Strategies — Implementações
 
@@ -157,10 +161,10 @@ class TaxInternship implements Tax {
 ### 📌 Cada classe:
 
 -Implementa o mesmo contrato
-
 -Possui sua própria regra
-
 -Pode ser alterada sem afetar as outras
+
+---
 
 ### 3️⃣ Context — Classe que usa a Strategy
 
@@ -194,6 +198,142 @@ class Payment {
 | Herança (de tipo)       | `implements Tax`                  |
 | Inversão de dependência | `Payment` depende da interface    |
 | Open/Closed             | Novas regras sem modificar código |
+
+--- 
+
+## Uso do Getter
+
+### 1️⃣ O que é esse get?
+
+```ts
+get taxPayment() {
+  return this.tax;
+}
+```
+
+Isso é um **getter**.
+
+👉 Ele permite acessar um valor **como se fosse uma propriedade**,
+mas por baixo dos panos é um método.
+Torna um método em atributo.
+
+Uso:
+
+```ts
+payment.taxPayment
+```
+
+Não usa parênteses.
+Parece um atributo, mas é uma função.
+
+---
+
+### 2️⃣ Pra que isso existe?
+
+**🎯 Motivo principal**
+
+**Expor um dado interno sem quebrar o encapsulamento.**
+
+Você:
+
+  -NÃO libera o atributo direto
+  -NÃO permite alteração
+  -mas permite leitura controlada
+
+Exemplo:
+
+```ts
+private tax: Tax;
+```
+
+Sem getter:
+
+  -ninguém de fora pode acessar tax
+
+Com getter: 
+
+```ts
+payment.taxPayment
+```
+📌 Leitura permitida
+📌 Escrita bloqueada
+
+
+### 3️⃣ E esse segundo método?
+
+```ts
+getTaxPayment() {
+  return this.taxPayment;
+}
+```
+
+Aqui acontece algo importante 👇
+
+**🚨 Ele é redundante**
+
+Esse método:
+
+  -só chama o getter
+  -não adiciona regra
+  -não adiciona validação
+  -não adiciona comportamento
+
+Na prática, isso aqui:
+
+```ts
+payment.getTaxPayment();
+```
+
+faz **exatamente a mesma coisa que:**
+
+```ts
+payment.taxPayment;
+```
+
+### 4️⃣ Quando faz sentido usar get?
+
+#### ✅ Caso 1 — Expor estado calculado
+
+```ts
+get taxPayment() {
+  return this.tax.calculate(this.salary);
+}
+```
+
+Aqui:
+
+  -não é um simples atributo
+  -é um valor derivado
+
+📌 Getter faz total sentido.
+
+#### ✅ Caso 2 — Compatibilidade com API / padrão
+
+xemplo:
+
+  -framework exige propriedade
+  -serialização
+  -binding
+
+Getter mantém a interface limpa.
+
+#### ✅ Caso 3 — Proteger mudança futura
+
+Hoje:
+
+```ts
+payment.taxPayment;
+```
+Amanhã:
+
+```ts
+get taxPayment() {
+  return this.taxService.getTax();
+}
+```
+
+📌 Quem usa não muda nada.
+
 
 ### 🧪 Testando o Strategy
 
