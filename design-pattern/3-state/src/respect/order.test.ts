@@ -1,6 +1,7 @@
 import { describe, expect, test } from "bun:test";
-import { ORDER_STATE } from "./data";
 import { Order } from "./order";
+import { ORDER_STATE } from "./data";
+
 
 describe("Order", () => {
 	test("waiting", () => {

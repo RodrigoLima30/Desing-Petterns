@@ -1,80 +1,225 @@
-# 🧠 Design Patterns — Strategy Pattern com TypeScript
+# 🧠 Design Patterns with TypeScript
 
 ## 📌 Sobre este repositório
 
-Este repositório tem como objetivo **ensinar Design Patterns na prática**, com foco inicial no **Strategy Pattern**, utilizando **TypeScript** e exemplos simples, reais e testáveis.
+Este repositório tem como objetivo **ensinar Design Patterns na prática**, utilizando **TypeScript** e exemplos simples, claros e testáveis.
 
-Aqui você vai aprender:
-- O que são Design Patterns
+A ideia não é apenas mostrar código, mas **explicar o motivo por trás das soluções**, ajudando a desenvolver uma visão mais sólida de arquitetura de software.
+
+Todos os exemplos foram pensados para serem:
+
+- simples de entender
+- fáceis de testar
+- aplicáveis em projetos reais
+
+---
+
+## 📚 Conteúdo do repositório
+
+Neste repositório você encontrará explicações e implementações práticas de alguns dos **Design Patterns mais importantes da programação orientada a objetos**.
+
+Você aprenderá:
+
+- O que são **Design Patterns**
 - Por que eles existem
-- Quando usar o Strategy Pattern
-- Como aplicar Strategy usando POO
-- Como evitar `if/else` complexos
-- Como escrever código flexível e extensível
+- Quando utilizar cada padrão
+- Como aplicar **POO na prática**
+- Como evitar código difícil de manter
+- Como escrever código **flexível, extensível e testável**
+
+Patterns abordados neste repositório:
+
+- **Strategy Pattern**
+- **Template Method Pattern**
+- *(outros podem ser adicionados futuramente)*
 
 ---
 
 ## 🎯 Público-alvo
 
-- Desenvolvedores iniciantes ou intermediários
-- Pessoas estudando **POO**
-- Quem quer escrever código mais limpo e escalável
-- Quem quer entender *o porquê* dos patterns, não só copiar código
+Este repositório é ideal para:
+
+- Desenvolvedores **iniciantes ou intermediários**
+- Pessoas estudando **Programação Orientada a Objetos (POO)**
+- Quem quer entender **arquitetura de software**
+- Quem deseja escrever **código mais limpo e escalável**
+- Quem quer aprender **Design Patterns na prática**
+
+Não é necessário conhecimento avançado.  
+Os exemplos foram construídos para serem **didáticos e progressivos**.
 
 ---
 
-## 🧩 O que são Design Patterns?
+# 🧩 O que são Design Patterns?
 
-### 📖 Definição
+## 📖 Definição
 
 **Design Patterns** são **soluções reutilizáveis para problemas recorrentes de design de software**.
 
-Eles:
-- Não são frameworks
-- Não são bibliotecas
-- Não são códigos prontos
+Eles representam **boas práticas de arquitetura**, descobertas e refinadas ao longo de muitos anos pela comunidade de desenvolvedores.
 
-👉 São **formas comprovadas de estruturar código**.
+É importante entender que Design Patterns:
 
----
+- **não são frameworks**
+- **não são bibliotecas**
+- **não são códigos prontos**
 
-### 🤔 Por que Design Patterns existem?
-
-Durante anos, desenvolvedores perceberam que:
-- Os mesmos problemas apareciam repetidamente
-- Algumas soluções funcionavam melhor do que outras
-
-📌 Então essas soluções foram **catalogadas**, documentadas e nomeadas.
+👉 Eles são **formas comprovadas de estruturar código para resolver problemas comuns**.
 
 ---
 
-### 🧠 Benefícios dos Design Patterns
+## 🤔 Por que Design Patterns existem?
 
-- Código mais legível
-- Menos acoplamento
-- Mais flexibilidade
-- Facilidade de manutenção
-- Comunicação clara entre desenvolvedores
+Durante a evolução da engenharia de software, desenvolvedores perceberam que **os mesmos tipos de problemas apareciam repetidamente** em diferentes sistemas.
 
-Exemplo:
-> “Esse código usa Strategy”  
-Todo mundo entende a intenção.
+Por exemplo:
+
+- Como trocar comportamentos sem alterar código existente?
+- Como evitar grandes blocos de `if/else`?
+- Como organizar responsabilidades entre classes?
+- Como tornar um sistema mais fácil de estender?
+
+Ao longo do tempo, algumas soluções se mostraram **mais eficientes e mais elegantes**.
+
+Essas soluções começaram a ser:
+
+1. Identificadas
+2. Documentadas
+3. Nomeadas
+
+Assim surgiram os **Design Patterns**.
 
 ---
 
-## 🎯 O que é o Strategy Pattern?
+## 📚 Origem dos Design Patterns
+
+O conceito foi popularizado pelo famoso livro:
+
+**"Design Patterns: Elements of Reusable Object-Oriented Software" (1994)**
+
+Escrito por:
+
+- Erich Gamma
+- Richard Helm
+- Ralph Johnson
+- John Vlissides
+
+Esse grupo ficou conhecido como **Gang of Four (GoF)**.
+
+O livro catalogou **23 padrões clássicos de design orientado a objetos**, que até hoje são amplamente utilizados.
+
+---
+
+## 🧠 O que um Design Pattern descreve?
+
+Um Design Pattern geralmente descreve:
+
+- Um **problema recorrente**
+- O **contexto onde ele acontece**
+- Uma **solução arquitetural**
+- As **consequências dessa solução**
+
+Ou seja, um pattern não entrega apenas código — ele explica **como pensar o design do sistema**.
+
+---
+
+## 🧠 Benefícios dos Design Patterns
+
+Aplicar Design Patterns corretamente traz diversos benefícios:
+
+### 📌 Código mais legível
+
+O código fica mais organizado e fácil de entender.
+
+---
+
+### 📌 Menor acoplamento
+
+As partes do sistema ficam **menos dependentes umas das outras**.
+
+---
+
+### 📌 Maior flexibilidade
+
+Novos comportamentos podem ser adicionados **sem modificar código existente**.
+
+---
+
+### 📌 Facilidade de manutenção
+
+Alterações futuras se tornam **mais simples e seguras**.
+
+---
+
+### 📌 Melhor comunicação entre desenvolvedores
+
+Design Patterns criam **uma linguagem comum** entre programadores.
+
+Por exemplo:
+
+> "Esse módulo utiliza Strategy Pattern."
+
+Um desenvolvedor experiente já entende **qual é a intenção da arquitetura**.
+
+---
+
+## ⚠️ Design Patterns não são regra
+
+Apesar de serem extremamente úteis, Design Patterns **não devem ser usados em excesso**.
+
+Aplicar patterns sem necessidade pode:
+
+- aumentar a complexidade
+- dificultar a leitura do código
+- criar abstrações desnecessárias
+
+👉 O objetivo de um Design Pattern é **simplificar o design**, não complicá-lo.
+
+---
+
+## 🧠 Como aprender Design Patterns da forma correta
+
+A melhor forma de aprender Design Patterns é:
+
+1️⃣ Entender o **problema original**  
+2️⃣ Ver **por que a solução ingênua falha**  
+3️⃣ Aplicar o **pattern como solução**
+
+Por isso este repositório sempre segue esta estrutura:
+
+1. **Problema**
+2. **Violação de boas práticas**
+3. **Aplicação do Design Pattern**
+4. **Explicação dos conceitos de POO envolvidos**
+
+Assim fica mais fácil entender **não apenas como usar um pattern, mas quando usar**.
+
+---
+
+## 🎯 Strategy Pattern
 
 ### 📖 Definição
 
-O **Strategy Pattern** permite **definir uma família de algoritmos**, encapsular cada um deles e torná-los **intercambiáveis**.
+O **Strategy Pattern** é um **Design Pattern comportamental** que permite **definir uma família de algoritmos**, encapsular cada um deles em uma classe separada e torná-los **intercambiáveis.**
 
-👉 O comportamento pode variar **sem alterar o código que o utiliza**.
+Isso significa que **o comportamento de um objeto pode ser alterado em tempo de execução**, sem modificar o código que o utiliza.
+
+👉 Em outras palavras:
+
+|     O Strategy permite trocar como algo é feito sem mudar quem usa essa lógica.
 
 ---
 
 ### 🧠 Problema que o Strategy resolve
 
-Código assim 👇
+Imagine um sistema de pedidos onde o **frete pode variar dependendo do tipo de entrega.**
+
+Por exemplo:
+
+- Frete comum → 5%
+- Frete expresso → 10%
+
+Uma implementação inicial poderia ser feita assim:
 
 ```ts
 if (type === "CLT") {
@@ -86,120 +231,333 @@ if (type === "CLT") {
 }
 ```
 
-### 📌 Problemas:
+Esse tipo de abordagem parece simples no começo, mas rapidamente se torna problemática.
 
--Difícil de manter
+---
 
--Difícil de testar
+### 📌 Problemas dessa abordagem
 
--Cada novo tipo exige alterar o código existente
+Esse tipo de implementação gera diversos problemas arquiteturais:
 
--Viola o princípio Open/Closed
+- Código difícil de manter
+- Código difícil de testar
+- Forte acoplamento
+- Crescimento descontrolado de if/else
+- Violação do princípio **Open/Closed**
+- Sempre que surgir um novo tipo de cálculo, será necessário **modificar o código existente**, aumentando o risco de bugs.
+
+---
+
+### ❌ Violação de Design (Exemplo real)
+
+Um exemplo de implementação problemática pode ser visto no código abaixo:
+
+```ts
+class Pedido {
+	protected valor: number;
+
+	constructor(valor: number) {
+		this.valor = valor;
+	}
+
+	getValor(): number {
+		return this.valor;
+	}
+
+	setValor(valor: number): void {
+		this.valor = valor;
+	}
+
+	calculaFreteComum(): number {
+		return this.valor * 0.05;
+	}
+
+	calculaFreteExpresso(): number {
+		return this.valor * 0.1;
+	}
+}
+```
+
+--- 
+
+#### 📌 Problemas dessa implementação
+
+Embora funcione, essa abordagem apresenta alguns problemas de design.
+
+1️⃣ **Classe com múltiplas responsabilidades**
+
+- A classe Pedido está responsável por:
+- armazenar o valor do pedido
+- calcular frete comum
+- calcular frete expresso
+
+Ou seja, ela está assumindo **responsabilidades que não pertencem diretamente a ela.**
+
+2️⃣ **Dificuldade de expansão**
+
+Se um novo tipo de frete surgir, como por exemplo:
+
+- Frete internacional
+- Frete premium
+- Frete econômico
+
+Será necessário **modificar a classe Pedido novamente.**
+
+Isso viola o princípio **Open/Closed.**
+
+3️⃣ **Forte acoplamento**
+
+A lógica de cálculo do frete está presa dentro da classe Pedido.
+
+Isso dificulta:
+
+- reutilização
+- testes isolados
+- evolução do sistema
+
+---
 
 ### 🧩 Conceito central do Strategy
 
-#### Separar o QUE muda do QUE permanece igual
+O Strategy Pattern resolve esse problema separando:
 
--O cálculo muda
+🔹 **O que muda**
 
--O processo de pagamento permanece
+A lógica do cálculo.
+
+🔹 **O que permanece igual**
+
+O processo que usa esse cálculo.
+
+No exemplo do frete:
+
+| **Parte do sistema**      |**Muda?**|
+| ------------------------- | -----   |
+| Regra de cálculo do frete | ✅ Sim |
+| Processo de pedido        | ❌ Não |
+
+Portanto, o cálculo deve ser **extraído para estratégias independentes.**
+
+---
 
 ### 🧠 Estrutura do Strategy Pattern
 
-O Strategy é composto por:
+O Strategy é composto por três elementos principais:
 
-1️⃣ Strategy (Interface)
-2️⃣ Concrete Strategies (Implementações)
-3️⃣ Context (Classe que usa a Strategy)
+1️⃣ **Strategy (Interface)**
+
+Define o contrato que todas as estratégias devem seguir.
+
+2️⃣ **Concrete Strategies**
+
+Classes que implementam o algoritmo específico.
+
+3️⃣ **Context**
+
+Classe que utiliza a estratégia, sem conhecer os detalhes da implementação.
 
 ---
 
-### 1️⃣ Strategy — Interface
+### 🧩 Implementação do Strategy
+
+1️⃣ Strategy — Interface
+
+Primeiro definimos uma interface que representa o comportamento comum de todas as estratégias.
 
 ```ts
-interface Tax {
-  calculate(salary: number): number;
+interface Freight {
+	calculate(value: number): number;
+}
+```
+
+#### 📌 O que essa interface faz?
+
+Ela define um contrato.
+
+Isso significa que **qualquer classe que implemente essa interface deve possuir o método** ```calculate```.
+
+Isso permite aplicar **polimorfismo.**
+
+2️⃣ **Concrete Strategies — Implementações**
+
+Cada estratégia implementa uma forma diferente de cálculo.
+
+```ts
+class FreightCommon implements Freight {
+    calculate(value: number): number {
+        return value * 0.05;
+    }
+}
+
+class FreightExpress implements Freight {
+    calculate(value: number): number {
+        return value * 0.1;
+    }
 }
 
 ```
 
-### 📌 A interface:
+#### 📌 O que acontece aqui?
 
--Define um contrato
+Cada classe:
 
--Garante que todas as estratégias tenham o mesmo comportamento
+- implementa a interface Freight
+- possui sua própria regra de cálculo
+- pode ser modificada sem afetar as outras
 
--Permite polimorfismo
+Isso cria baixo acoplamento entre as estratégias.
 
----
+3️⃣ Context — Classe que usa a Strategy
 
-### 2️⃣ Concrete Strategies — Implementações
-
-Cada classe representa uma variação do algoritmo.
+A classe Order representa o Context.
 
 ```ts
-class TaxCLT implements Tax {
-  calculate(salary: number): number {
-    return salary * 0.2;
-  }
-}
+class Order {
+    constructor (public freight: Freight) {}
 
-class TaxPJ implements Tax {
-  calculate(salary: number): number {
-    return salary * 0.1;
-  }
-}
-
-class TaxInternship implements Tax {
-  calculate(salary: number): number {
-    return salary * 0.05;
-  }
+    calculateFreight(value: number) {
+        return this.freight.calculate(value);
+    }
 }
 
 ```
 
-### 📌 Cada classe:
+#### 📌 O que o Context faz?
 
--Implementa o mesmo contrato
--Possui sua própria regra
--Pode ser alterada sem afetar as outras
+A classe Order:
+
+- recebe uma estratégia no construtor
+- não sabe qual estratégia está sendo usada
+- apenas delega o cálculo
+
+Ou seja:
+
+```ts
+this.freight.calculate(value)
+```
+
+Ela apenas chama o método definido pela interface.
+
+Isso permite **trocar a estratégia sem alterar a classe.**
 
 ---
 
-### 3️⃣ Context — Classe que usa a Strategy
+### 🧪 Testando o Strategy
+
+O comportamento pode ser testado facilmente.
 
 ```ts
-class Payment {
-  constructor(private readonly tax: Tax) {}
+describe("Freight Calculate Strategy", () => {
+    test("common freight", () => {
+        const order = new Order(new FreightCommon());
+        const freight = order.calculateFreight(100);
+        expect(freight).toBe(5);
+    });
 
-  calculate(salary: number): number {
-    return this.tax.calculate(salary);
-  }
-}
-
+    test("express freight", () => {
+        const order = new Order(new FreightExpress());
+        const freight = order.calculateFreight(100);
+        expect(freight).toBe(10);
+    });
+});
 ```
 
-### 📌 O Context:
+#### 📌 O que acontece nesses testes?
 
--Não conhece as regras internas
+No primeiro teste:
 
--Depende da interface, não da implementação
+```ts
+new Order(new FreightCommon())
+```
 
--Apenas delega o comportamento
+A estratégia utilizada será **FreightCommon.**
+
+No segundo teste:
+
+```ts
+new Order(new FreightExpress())
+```
+
+A estratégia utilizada será **FreightExpress.**
+
+👉 A classe Order não mudou.
+
+Apenas a estratégia foi trocada.
+
+Esse é exatamente o objetivo do **Strategy Pattern.**
+
+---
 
 
-### 🧠 Onde está a POO no Strategy?
+### Conceitos de POO aplicados
 
+O Strategy utiliza vários conceitos fundamentais da Programação Orientada a Objetos.
 
-| Conceito de POO         | Onde aparece                      |
-| ----------------------- | --------------------------------- |
-| Encapsulamento          | Cada regra está isolada           |
-| Polimorfismo            | `Tax` pode ser CLT, PJ ou Estágio |
-| Herança (de tipo)       | `implements Tax`                  |
-| Inversão de dependência | `Payment` depende da interface    |
-| Open/Closed             | Novas regras sem modificar código |
+| Conceito                | Onde aparece                                           |
+| ----------------------- | ------------------------------------------------------ |
+| Encapsulamento          | Cada cálculo está isolado em uma classe                |
+| Polimorfismo            | `Freight` pode ser `FreightCommon` ou `FreightExpress` |
+| Abstração               | Interface `Freight` define o contrato                  |
+| Inversão de dependência | `Order` depende da interface                           |
+| Open/Closed             | Novas estratégias sem modificar código                 |
 
 --- 
+
+### 🚀 Vantagens do Strategy Pattern
+
+✅ **Elimina if/else complexos**
+
+Cada regra vira uma classe independente.
+
+✅ **Alta extensibilidade**
+
+Novas estratégias podem ser criadas sem alterar código existente.
+
+✅ **Melhor organização do código**
+
+Cada algoritmo possui sua própria classe.
+
+✅ **Facilita testes**
+
+Cada estratégia pode ser testada isoladamente.
+
+✅ **Baixo acoplamento**
+
+O sistema depende de interfaces, não de implementações.
+
+--- 
+
+### ⚠️ Quando NÃO usar Strategy
+
+O Strategy Pattern não deve ser usado em todos os casos.
+
+Evite quando:
+
+- Existe apenas uma regra
+- O comportamento nunca vai variar
+- A abstração adiciona complexidade desnecessária
+
+Design Patterns devem **simplificar o código**, não complicá-lo.
+
+### 📝 Conclusão
+
+O **Strategy Pattern** é uma forma poderosa de aplicar os princípios da **Programação Orientada a Objetos** para criar sistemas mais flexíveis e extensíveis.
+
+Ao separar diferentes algoritmos em estratégias independentes, o código se torna:
+
+- mais limpo
+- mais testável
+- mais fácil de evoluir
+
+Aprender Strategy é um passo fundamental para entender conceitos importantes como:
+
+- SOLID
+- baixo acoplamento 
+- arquitetura orientada a objetos
+
+---
+
+***Dicas a mais:***
 
 ## Uso do Getter
 
@@ -334,63 +692,1092 @@ get taxPayment() {
 
 📌 Quem usa não muda nada.
 
+### 📌 Benefícios:
 
-### 🧪 Testando o Strategy
+- Testes simples
+- Cada regra testada isoladamente
+- Sem mocks complexos
+
+---
+
+## 🎯 O que é o Template Method Pattern?
+
+### 📖 Definição
+
+O **Template Method Pattern** define **a estrutura de um algoritmo em um método**,
+permitindo que **subclasses redefinam algumas etapas do algoritmo sem alterar sua estrutura.**
+
+👉 Em outras palavras:
+
+O fluxo principal do algoritmo é fixo,  mas algumas partes podem variar.
+
+---
+
+### 🧠 Ideia central do Template Method
+
+Separar:
+
+- O que sempre acontece
+- O que pode variar
+
+Exemplo genérico:
 
 ```ts
-describe("Tax Calculate Strategy", () => {
-  test("CLT tax", () => {
-    const payment = new Payment(new TaxCLT());
-    expect(payment.calculate(1000)).toBe(200);
-  });
+processPayment() {
 
-  test("PJ tax", () => {
-    const payment = new Payment(new TaxPJ());
-    expect(payment.calculate(1000)).toBe(100);
-  });
+  step1()
+  step2()
+  step3()
 
-  test("Internship tax", () => {
-    const payment = new Payment(new TaxInternship());
-    expect(payment.calculate(1000)).toBe(50);
-  });
-});
+}
+```
+
+Alguns passos podem mudar dependendo da implementação.
+
+---
+
+### 🧠 Problema real (Violação)
+
+Vamos analisar o código inicial.
+
+**Pasta- Template-method/violation**
+
+---
+
+### 🚨 Problema desse código
+
+Observe que todas as classes possuem exatamente o mesmo fluxo:
+
+```ts
+valorFinal = valor + taxa - desconto
+gateway.cobrar(valorFinal)
+```
+
+Ou seja:
+
+```ts
+calcular taxa
+calcular desconto
+calcular valor final
+executar cobrança
+```
+
+Esse algoritmo é idêntico em todas as classes.
+
+---
+
+### 📌 Problemas arquiteturais
+
+❌ Duplicação de código
+
+Esse trecho se repete:
+
+```ts
+const valorFinal =
+	this.valor + this.calcularTaxa() - this.calcularDesconto();
+```
+
+---
+
+#### ❌ Violação do princípio DRY
+
+DRY = Don't Repeat Yourself
+
+Código duplicado gera:
+
+- manutenção difícil
+- bugs
+- inconsistência
+
+---
+
+#### ❌ Alto risco de inconsistência
+
+Se amanhã a regra mudar:
+
+```ts
+valor + taxa - desconto + taxaGateway
+```
+
+Você terá que alterar em todas as classes.
+
+---
+
+#### ❌ Responsabilidade duplicada
+
+Cada classe está fazendo duas coisas:
+
+1️⃣ Definir regras
+2️⃣ Controlar o fluxo do algoritmo
+
+Isso mistura responsabilidades.
+
+---
+
+### 🧩 Como o Template Method resolve isso
+
+O Template Method extrai o algoritmo comum para uma classe base.
+
+E deixa apenas as partes variáveis nas subclasses.
+
+**Estrutura do Template Method**
+
+O padrão possui:
+
+1️⃣ Abstract Class (Template)
+2️⃣ Template Method
+3️⃣ Primitive Operations (métodos abstratos)
+4️⃣ Concrete Classes
+
+1️⃣ Classe Abstrata (Template)
+
+```ts
+export abstract class Gateway {
+
+  abstract calculateTax(value: number): number;
+
+  abstract calculateDiscont(value: number): number;
+
+  calculate(value: number): number {
+
+    const valorFinal =
+      value + this.calculateTax(value) - this.calculateDiscont(value);
+
+    return valorFinal;
+  }
+
+}
+```
+---
+
+#### 🧠 O que é abstract?
+
+abstract significa:
+
+👉 a classe não pode ser instanciada diretamente
+
+Isso obriga a criação de subclasses.
+
+Exemplo inválido:
+
+```ts
+new Gateway() ❌
+```
+
+📌 Por que usar classe abstrata?
+
+Porque o Gateway define:
+
+```ts
+estrutura do algoritmo
+```
+
+mas não define as regras específicas.
+
+
+#### 🧠 O que são métodos abstratos?
+
+```ts
+abstract calculateTax(value: number): number;
+```
+
+
+Significa:
+
+esse método deve ser implementado pela subclasse
+
+
+A classe base define o contrato,
+mas não a implementação.
+
+---
+
+### 🧩 Template Method
+
+O método:
+
+```ts
+calculate()
+```
+
+é o Template Method.
+
+```ts
+calculate(value: number): number {
+
+  const valorFinal =
+    value + this.calculateTax(value) - this.calculateDiscont(value);
+
+  return valorFinal;
+
+}
+```
+
+Ele define a estrutura fixa do algoritmo.
+
+Fluxo do algoritmo
+
+```ts
+calculate()
+
+  calcular taxa
+  calcular desconto
+  calcular valor final
+```
+
+Mas quem decide:
+
+```ts
+taxa
+desconto
+```
+
+
+são as subclasses
+
+2️⃣ Concrete Classes
+
+Pasta- Template-method/respect
+
+#### 🧠 O que é extends?
+
+```ts
+class PaymentCredit extends Gateway
+```
+
+Significa que a classe herda da classe base.
+
+Isso permite:
+
+- reutilizar código
+- sobrescrever métodos
+- manter estrutura comum
+
+#### 🧠 O que é super()?
+
+```ts
+constructor() {
+  super();
+}
 
 ```
 
-### 📌 Benefícios:
+super() chama o construtor da classe pai.
 
--Testes simples
+Ele é obrigatório quando a classe pai possui construtor.
 
--Cada regra testada isoladamente
+---
 
--Sem mocks complexos
+### 🧠 Conceitos de POO usados
 
-### 🚀 Vantagens do Strategy Pattern
+| Conceito de POO         | Onde aparece                      |
+| ----------------------- | --------------------------------- |
+| Encapsulamento          | Cada classe define sua regra      |
+| Polimorfismo            | `calculateTax()` muda por classe  |
+| Herança (de tipo)       | `extends Gateway`                 |
+| Abstração               | Classe `abstract Gateway`         |
+| Reuso de código         | Template Method                   |
 
-✅ Elimina if/else
+---
+
+### 🚀 Benefícios do Template Method
+
+✅ Elimina duplicação de código
+✅ Centraliza o algoritmo
 ✅ Facilita manutenção
-✅ Código extensível
-✅ Alta testabilidade
-✅ Clareza de responsabilidades
+✅ Aumenta reutilização
+✅ Garante consistência
 
-### ⚠️ Quando NÃO usar Strategy
+---
 
--Quando existe apenas uma regra
+### ⚠️ Quando NÃO usar Template Method
 
--Quando a variação nunca vai mudar
+- Quando não existe algoritmo comum
+- Quando as classes são totalmente diferentes
+- Quando herança não faz sentido
 
--Quando o uso adiciona complexidade desnecessária
+---
 
-### 📌 Design Patterns devem simplificar, não complicar.
+### 🧠 Resumo do Template Method
+
+| Parte            | Função             |
+| ---------------- | ------------------ |
+| Abstract Class   | Define estrutura   |
+| Template Method  | Define algoritmo   |
+| Abstract Methods | Pontos de variação |
+| Subclasses       | Implementam regras |
+
+---
 
 ### 📝 Conclusão
 
-O Strategy Pattern é uma forma poderosa de aplicar POO na prática, criando sistemas flexíveis, limpos e preparados para mudanças.
+O Template Method Pattern permite definir o esqueleto de um algoritmo em uma classe base, delegando partes específicas para subclasses.
 
-Aprender Strategy é um passo fundamental para:
+Isso permite:
 
--Entender SOLID
+- reutilizar código
+- manter consistência
+- evitar duplicação
+- aplicar princípios sólidos de POO
 
--Escrever código profissional
+Aprender Template Method ajuda a entender melhor:
 
--Evoluir como desenvolvedor
+- Herança
+- Polimorfismo
+- Abstração
+- Arquitetura orientada a objetos
+
+--- 
+
+## 🎯 O que é o State Pattern?
+
+### 📖 Definição
+
+O **State Pattern** permite que um objeto altere seu comportamento quando seu estado interno muda.
+
+👉 Em outras palavras:
+
+O objeto parece mudar de classe quando seu estado muda.
+
+---
+
+### 🧠 Ideia central do State
+
+Separar:
+
+- Estado
+- Comportamento
+
+E fazer com que:
+
+👉 Cada estado seja responsável pelo seu próprio comportamento
+
+---
+
+### 🧠 Problema real (Violação)
+
+Código inicial:
+
+```ts
+export class Pedido {
+  static readonly AGUARDANDO_PAGAMENTO = 1;
+  static readonly PAGO = 2;
+  static readonly CANCELADO = 3;
+  static readonly ENVIADO = 4;
+
+  public estadoAtual: number;
+
+  public constructor() {
+    this.estadoAtual = Pedido.AGUARDANDO_PAGAMENTO;
+  }
+
+  public sucessoAoPagar(): void {
+    if (this.estadoAtual === Pedido.AGUARDANDO_PAGAMENTO) {
+      this.estadoAtual = Pedido.PAGO;
+    }
+  }
+
+  public cancelarPedido(): void {
+    if (this.estadoAtual === Pedido.AGUARDANDO_PAGAMENTO) {
+      this.estadoAtual = Pedido.CANCELADO;
+    } else if (this.estadoAtual === Pedido.PAGO) {
+      this.estadoAtual = Pedido.CANCELADO;
+    }
+  }
+
+  public despacharPedido(): void {
+    if (this.estadoAtual === Pedido.PAGO) {
+      this.estadoAtual = Pedido.ENVIADO;
+    }
+  }
+}
+```
+
+#### 🚨 Problemas desse código
+❌ Uso excessivo de if/else
+
+```ts
+if (this.estadoAtual === X)
+```
+
+Isso se repete em todos os métodos.
+
+#### ❌ Violação do princípio Open/Closed
+
+Se surgir um novo estado:
+
+```ts
+DEVOLVIDO
+```
+
+Você terá que modificar vários métodos.
+
+#### ❌ Baixa escalabilidade
+
+Quanto mais estados:
+
+- mais if
+- mais complexidade
+- mais bugs
+
+#### ❌ Código procedural
+
+Você está usando:
+
+```TS
+estado = número
+```
+
+Em vez de objetos com comportamento.
+
+---
+
+### 🧩 Quando usar State?
+
+Use quando:
+
+👉 O comportamento muda baseado no estado
+👉 Existem muitos if/else baseados em estado
+👉 O código está difícil de manter
+
+---
+
+### 🧱 Estrutura do State Pattern
+
+O padrão possui:
+
+1️⃣ Context (Order)
+2️⃣ State Interface
+3️⃣ Concrete States
+
+```ts
+state/
+ ├── data.ts
+ ├── order.ts
+ ├── state.ts
+ ├── waiting.state.ts
+ ├── paid.state.ts
+ ├── canceled.state.ts
+ ├── sent.state.ts
+```
+
+1️⃣ Constantes (data.ts)
+
+```ts
+export const ORDER_STATE = {
+  WAITING: "WAITING",
+  PAID: "PAID",
+  CANCELED: "CANCELED",
+  SENT: "SENT",
+} as const;
+```
+
+#### 🧠 O que é as const?
+
+- Torna os valores imutáveis
+- Mantém os tipos literais
+
+Sem isso:
+
+- WAITING: string ❌
+
+Com isso:
+
+- WAITING: "WAITING" ✅
+
+2️⃣ Interface do Estado (state.ts)
+
+```ts
+import { Order } from "./order";
+
+export interface OrderState {
+  success(order: Order): void;
+  cancel(order: Order): void;
+  dispatch(order: Order): void;
+  getName(): string;
+}
+```
+
+#### 🧠 O que é uma interface?
+
+Define um contrato:
+
+👉 Toda classe que implementa deve ter esses métodos
+
+#### 🧠 Métodos explicados
+
+```ts
+success(order: Order): void;
+```
+
+- success → nome do método
+- order: Order → recebe o contexto
+- void → não retorna nada
+
+---
+
+### 🧠 Por que passar o order?
+
+Para permitir:
+
+```ts
+order.setState(new PaidState());
+```
+
+👉 O estado controla a transição
+
+3️⃣ Contexto (order.ts)
+
+```ts
+import { OrderState } from "./state";
+import { WaitingState } from "./waiting.state";
+
+export class Order {
+  private _state: OrderState;
+
+  constructor() {
+    this._state = new WaitingState();
+  }
+
+  get state() {
+    return this._state.getName();
+  }
+
+  setState(state: OrderState) {
+    this._state = state;
+  }
+
+  success() {
+    this._state.success(this);
+  }
+
+  cancel() {
+    this._state.cancel(this);
+  }
+
+  dispatch() {
+    this._state.dispatch(this);
+  }
+}
+```
+
+#### 🧠 O que é _state?
+
+- Armazena o estado atual
+- Tipo: OrderState
+- private → encapsulado
+
+#### 🧠 Getter
+
+```ts
+get state()
+```
+
+Permite:
+
+```ts
+order.state
+```
+
+#### 🧠 Delegação (ESSENCIAL)
+
+```ts
+this._state.success(this);
+```
+
+👉 O Order não decide nada
+👉 O estado decide tudo
+
+4️⃣ Estados Concretos
+
+🟡 WaitingState
+🟢 PaidState
+🔴 CanceledState
+🚚 SentState
+
+---
+
+### 🧠 Conceitos de POO usados
+
+| Conceito          | Onde aparece                     |
+| ----------------- | -------------------------------- |
+| Encapsulamento    | `_state` privado                 |
+| Polimorfismo      | `state.success()` muda           |
+| Abstração         | interface `OrderState`           |
+| Baixo acoplamento | Order não conhece regras         |
+| Open/Closed       | novos estados sem alterar código |
+
+---
+
+
+### 🧠 Conceitos de TypeScript usados
+
+| Conceito        | Explicação           |
+| --------------- | -------------------- |
+| interface       | define contrato      |
+| implements      | obriga implementação |
+| private         | encapsulamento       |
+| getter          | acesso controlado    |
+| as const        | tipagem literal      |
+| type annotation | tipagem forte        |
+
+
+---
+
+#### 🚀 Benefícios do State Pattern
+
+✅ Remove if/else
+✅ Código mais organizado
+✅ Fácil manutenção
+✅ Fácil extensão
+✅ Baixo acoplamento
+
+---
+
+### ⚠️ Quando NÃO usar State
+
+- Poucos estados simples
+- Sem variação de comportamento
+- Código já simples
+
+---
+
+### 🧠 Resumo do State
+
+| Parte           | Função               |
+| --------------- | -------------------- |
+| Context (Order) | mantém estado atual  |
+| State Interface | define comportamento |
+| Concrete States | implementam regras   |
+
+---
+
+### 📝 Conclusão
+
+O **State Pattern** transforma:
+
+```estado = número```
+
+em:
+
+```estado = objeto com comportamento```
+
+
+Isso permite:
+
+- eliminar if/else
+- organizar regras
+- escalar o sistema
+- aplicar POO corretamente
+
+--- 
+
+## 🎯 O que é o Chain of Responsibility Pattern?
+
+### 📖 Definição
+
+O **Chain of Responsibility Pattern** é um padrão comportamental que permite **passar uma requisição por uma cadeia de objetos**, onde cada um pode:
+
+- processar a requisição  
+- ou delegar para o próximo  
+
+👉 Em outras palavras:
+
+A requisição percorre uma sequência de handlers até que alguém a trate.
+
+---
+
+### 🧠 Ideia central do Chain
+
+Separar:
+
+- Quem envia a requisição  
+- De quem processa  
+
+E permitir que:
+
+👉 Vários objetos tenham a chance de tratar essa requisição
+
+---
+
+### 🧠 Problema real (Violação)
+
+#### Exemplo simples
+
+```ts
+export class Example {
+  public attribute: number = 0;
+
+  public testAttribute(): void {
+    if (this.attribute < 10) {
+      // ...
+    } else if (this.attribute < 200) {
+      // ...
+    } else if (this.attribute < 500) {
+      // ...
+    } else {
+      // ...
+    }
+  }
+}
+```
+
+#### Exemplo real (PointsCalculator)
+
+```ts
+export class PointsCalculator {
+  public execute(order: Order, day: number): number {
+    let points: number;
+
+    if (order.getValue() >= 70) {
+      points = Math.floor(order.getValue() / 5);
+    } else if (order.getValue() >= 40) {
+      points = Math.floor(order.getValue() / 7);
+    } else if (order.getValue() >= 20) {
+      points = Math.floor(order.getValue() / 10);
+    } else {
+      return 0;
+    }
+
+    if (day >= 16 && day <= 31) return points * 2;
+    return points;
+  }
+}
+```
+
+#### 🚨 Problemas desse código
+
+- ❌ Cadeia de if/else
+
+```ts
+if (...) else if (...) else if (...)
+```
+
+👉 Difícil de escalar
+
+- ❌ Violação do Open/Closed
+
+Se surgir nova regra:
+
+```ts
+>=100
+```
+
+👉 Você precisa alterar o código existente
+
+- ❌ Alto acoplamento
+Toda lógica está concentrada em uma única classe
+
+- ❌ Baixa reutilização
+Não dá para reutilizar partes da lógica isoladamente
+
+- ❌ Difícil de testar
+Você não consegue testar cada regra separadamente
+
+---
+
+### 🧩 Quando usar Chain of Responsibility?
+
+Use quando:
+
+👉 Existem múltiplas regras sequenciais
+👉 Cada regra pode ou não tratar a requisição
+👉 Você quer evitar if/else encadeado
+👉 Você quer flexibilidade na ordem das regras
+
+### 🧱 Estrutura do Chain of Responsibility
+
+O padrão possui:
+
+1️⃣ Handler (classe abstrata)
+2️⃣ Concrete Handlers
+3️⃣ Chain (encadeamento)
+
+---
+
+📁 Estrutura de arquivos
+
+```ts
+chain/
+ ├── entities/
+ │    └── order-entity.ts
+ ├── services/
+ │    ├── point-calculator-abstract-service.ts
+ │    ├── points-calculator-20-service.ts
+ │    ├── points-calculator-40-service.ts
+ │    ├── points-calculator-70-service.ts
+ │    ├── points-calculator-no-point-service.ts
+ │    └── points-calculator-chain.ts
+```
+
+---
+
+### 1️⃣ Entidade (Order)
+
+```ts
+export class Order {
+  constructor(public readonly value: number) {}
+}
+```
+
+#### 🧠 Conceitos
+
+```public readonly```
+
+- public → acessível fora da classe
+- readonly → não pode ser alterado
+
+👉 Imutabilidade = mais segurança
+
+---
+
+### 2️⃣ Classe Abstrata (Handler)
+
+```ts
+export abstract class PointCalculator {
+  protected next: PointCalculator | undefined;
+
+  setNext(next: PointCalculator): PointCalculator {
+    this.next = next;
+    return this.next;
+  }
+
+  abstract execute(order: Order): number;
+}
+```
+
+#### 🧠 O que é abstract?
+
+👉 Classe que não pode ser instanciada diretamente
+
+```ts
+new PointCalculator() ❌
+```
+
+#### 🧠 Atributo next
+
+```ts
+protected next: PointCalculator | undefined;
+```
+
+- protected → acessível nas subclasses
+- guarda o próximo da cadeia
+
+#### 🧠 Método setNext
+
+```ts
+setNext(next: PointCalculator): PointCalculator
+```
+
+👉 Faz o encadeamento
+
+```ts
+points70.setNext(points40);
+```
+
+#### 🧠 Retorno do setNext
+
+```ts
+return this.next;
+```
+
+
+👉 Permite encadeamento fluente:
+
+```ts
+points70.setNext(points40).setNext(points20);
+```
+
+#### 🧠 Método abstrato
+
+```ts
+abstract execute(order: Order): number;
+```
+
+👉 Cada classe decide:
+
+- se trata
+- ou passa adiante
+
+---
+
+### 3️⃣ Handlers concretos
+
+🟢 Points70
+
+```ts
+export class Points70 extends PointCalculator {
+  execute(order: Order): number {
+    if (order.value >= 70) {
+      return Math.floor(order.value / 5);
+    }
+    return this.next!.execute(order);
+  }
+}
+```
+
+#### 🧠 Explicação
+
+```ts
+if (order.value >= 70)
+```
+
+
+👉 Se consegue tratar → resolve
+
+```ts
+return this.next!.execute(order);
+```
+
+👉 Senão → delega
+
+#### ⚠️ Operador !
+
+```ts
+this.next!
+```
+
+👉 Diz ao TypeScript:
+
+"confia em mim, não é undefined"
+
+🟡 Points40
+
+🔵 Points20
+
+🔴 NoPoints
+
+---
+
+### 4️⃣ Chain (orquestrador)
+
+```ts
+export class PointsCalculatorChain {
+  execute(order: Order, day: number): number {
+    const noPoints = new NoPoints();
+    const points20 = new Points20();
+    const points40 = new Points40();
+    const points70 = new Points70();
+
+    points70.setNext(points40);
+    points40.setNext(points20);
+    points20.setNext(noPoints);
+
+    return points70.execute(order);
+  }
+}
+```
+
+#### 🧠 O que acontece aqui?
+
+Montagem da cadeia:
+```ts
+Points70 → Points40 → Points20 → NoPoints
+```
+
+Execução:
+```ts
+points70.execute(order)
+```
+
+Fluxo:
+```ts
+valor >= 70 ? resolve
+senão → points40
+senão → points20
+senão → noPoints
+```
+
+#### 🧠 Diferença mental IMPORTANTE
+
+❌ Antes (if/else)
+
+```ts
+if (...) else if (...) else if (...)
+```
+
+👉 lógica centralizada
+
+✅ Depois (Chain)
+
+```ts
+handler.execute()
+```
+
+👉 lógica distribuída
+
+---
+
+### 🧠 Conceitos de POO usados
+
+| Conceito          | Onde aparece                      |
+| ----------------- | --------------------------------- |
+| Encapsulamento    | cada handler tem sua lógica       |
+| Polimorfismo      | `execute()` varia                 |
+| Abstração         | classe abstrata                   |
+| Baixo acoplamento | handlers independentes            |
+| Open/Closed       | novos handlers sem alterar código |
+
+---
+
+### 🧠 Conceitos de TypeScript usados
+
+| Conceito                 | Explicação        |            |
+| ------------------------ | ----------------- | ---------- |
+| abstract class           | base para herança |            |
+| protected                | acesso controlado |            |
+| readonly                 | imutabilidade     |            |
+| union type               | `                 | undefined` |
+| non-null assertion (`!`) | força não-null    |            |
+| type annotation          | tipagem forte     |            |
+
+---
+
+### 🚀 Benefícios do Chain of Responsibility
+
+✅ Elimina if/else
+✅ Código modular
+✅ Fácil extensão
+✅ Regras independentes
+✅ Alta reutilização
+
+---
+
+### ⚠️ Quando NÃO usar
+
+- Poucas regras simples
+- Sem necessidade de encadeamento
+- Overengineering
+
+---
+
+### 🧠 Resumo do Chain
+
+| Parte            | Função           |
+| ---------------- | ---------------- |
+| Handler          | define interface |
+| Concrete Handler | implementa regra |
+| Chain            | organiza fluxo   |
+
+
+### 📝 Conclusão
+
+O Chain of Responsibility Pattern transforma:
+
+```ts
+if/else complexo
+```
+
+em:
+
+```ts
+cadeia de objetos
+
+```
+
+Isso permite:
+
+- distribuir responsabilidades
+- reduzir acoplamento
+- facilitar manutenção
+- escalar regras

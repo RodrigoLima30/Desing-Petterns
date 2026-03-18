@@ -1,4 +1,4 @@
-import type { Order } from "@/domain/entities/order-entity";
+import type { Order } from "../../entities/order-entity";
 
 export abstract class PointCalculator {
   protected next: PointCalculator | undefined;
