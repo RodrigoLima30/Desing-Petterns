@@ -1781,3 +1781,530 @@ Isso permite:
 - reduzir acoplamento
 - facilitar manutenção
 - escalar regras
+
+## 🎯 Command Pattern (Aplicação Real com Use Case + Factory)
+
+---
+
+### 📖 Definição
+
+O **Command Pattern** é um padrão comportamental que permite **encapsular uma ação ou operação dentro de um objeto.**
+
+👉 Em outras palavras:
+
+Em vez de executar algo diretamente, você cria um objeto que representa essa ação.
+
+---
+
+### 🧠 Ideia central do Command
+
+Separar:
+
+- Quem pede a ação
+- De quem executa a ação
+
+E transformar a ação em algo reutilizável.
+
+---
+
+### 🧠 Evolução do Command (Muito importante)
+
+#### 🟢 Forma clássica
+
+```ts
+command.executar()
+command.desfazer()
+
+👉 Usado para ações (ligar, desligar, etc.)
+
+---
+
+🔵 **Forma usada neste projeto**
+
+```ts
+command.toJSON()
+```
+
+👉 Aqui o Command não executa ação
+👉 Ele monta dados
+
+💡 Isso é uma evolução muito comum em sistemas reais.
+
+---
+
+### 🧠 Problema real (sem Command)
+
+Imagine um sistema de cadastro:
+
+```ts
+if (profile === 'admin') {
+  user.role = adminRoleDefault;
+} else if (profile === 'user') {
+  user.role = userRoleDefault;
+}
+```
+
+---
+
+### 🚨 Problemas dessa abordagem
+
+❌ Uso de if/else espalhado
+❌ Difícil manutenção
+❌ Violação do Open/Closed
+❌ Alto acoplamento
+❌ Regras duplicadas
+
+---
+
+### 🧩 Como o Command resolve isso
+
+Cada regra vira um objeto separado:
+
+```ts
+new AdminFeaturesSignupCommand(user)
+```
+
+👉 Cada comando sabe montar o usuário corretamente
+
+---
+
+### 🧱 Estrutura do Command neste projeto
+
+O padrão possui:
+
+1️⃣ Interface do Command
+2️⃣ Commands concretos
+3️⃣ Factory de Commands
+4️⃣ Use Case que utiliza o Command
+
+---
+
+### 🧠 Organização em camadas (DDD simplificado)
+
+O projeto segue uma divisão inspirada em **DDD (Domain-Driven Design):**
+
+```ts
+application → casos de uso (regras de negócio)
+domain      → regras puras (commands, lógica)
+data        → tipos e validações
+infra       → acesso a dados (banco)
+```
+
+#### 📌 Explicação rápida
+
+- application → orquestra o fluxo
+- domain → onde mora a lógica de negócio
+- data → contratos e validações
+- infra → implementação técnica (banco, etc.)
+
+💡 Isso reduz acoplamento e melhora escalabilidade.
+
+---
+
+### 🧩 1️⃣ Interface do Command
+
+📁 data/command-data.ts
+
+```ts
+export interface FeaturesSignupCommand {
+  toJSON(): User
+}
+```
+
+#### 🧠 O que isso significa?
+
+👉 Define um contrato
+
+Qualquer classe que implementar essa interface DEVE ter:
+
+```ts
+toJSON(): User
+```
+
+#### 🧠 Por que toJSON()?
+
+Porque o objetivo do command aqui é:
+
+👉 transformar dados de entrada em um User válido
+
+---
+
+### 🧩 2️⃣ Commands concretos
+
+📁 AdminFeaturesSignupCommand
+
+```ts
+export class AdminFeaturesSignupCommand implements FeaturesSignupCommand {
+  #role: Role
+  #data: User
+```
+
+---
+
+#### 🧠 O que é esse # ?
+
+```ts
+#role
+#data
+```
+
+👉 Isso é um **campo privado real do JavaScript.**
+
+---
+
+#### 🔐 Diferença importante
+
+| Forma     | Tipo                      |
+| --------- | ------------------------- |
+| `private` | TypeScript (compilação)   |
+| `#`       | JavaScript real (runtime) |
+
+---
+
+#### 📌 Exemplo
+
+```ts
+class Test {
+  #value = 10;
+}
+```
+
+👉 Isso NÃO pode ser acessado fora da classe:
+
+```ts
+obj.#value ❌ ERRO
+```
+
+💡 Ou seja:
+
+👉 # garante encapsulamento de verdade
+
+---
+
+#### 🧠 Constructor
+
+```ts
+constructor(private readonly model: User)
+```
+
+#### 📌 O que isso faz?
+
+- private → só acessível na classe
+- readonly → não pode ser alterado
+- model → dados de entrada
+
+---
+
+#### 🧠 Lógica principal
+
+```ts
+this.#role = adminRoleDefault;
+```
+
+#### 📌 O que isso faz?
+
+👉 Define o papel do usuário como admin
+
+```ts
+this.#data = userSchema.parse({
+  ...model,
+  role: this.#role,
+})
+```
+
+---
+
+#### 📌 Explicação detalhada
+
+```ts
+...model
+```
+
+👉 espalha os dados do usuário
+
+```ts
+role: this.#role
+```
+
+👉 injeta as permissões de admin
+
+```ts
+userSchema.parse(...)
+```
+
+👉 valida os dados com Zod
+
+---
+
+#### 🧠 O que é parse()?
+
+- valida estrutura
+- garante tipagem
+- lança erro se inválido
+
+---
+
+#### 🧠 Método final
+
+```ts
+toJSON(): User {
+  return this.#data;
+}
+```
+
+👉 Retorna o usuário pronto
+
+---
+
+### 🧩 Outros Commands
+
+🟡 UserFeaturesSignupCommand
+🔵 GuestFeaturesSignupCommand
+
+💡 Todos seguem a mesma ideia:
+
+👉 só muda o role
+
+---
+
+### 🏭 3️⃣ CommandFactory
+
+📁 domain/factory/command-factory.ts
+
+```ts
+makeFeaturesSignup(profile, user)
+```
+
+---
+
+#### 🧠 O que essa classe faz?
+
+👉 Decide qual command usar
+
+```ts
+switch (profile)
+```
+
+---
+
+#### 📌 Mapeamento
+
+| Profile | Command      |
+| ------- | ------------ |
+| admin   | AdminCommand |
+| user    | UserCommand  |
+| guest   | GuestCommand |
+
+
+#### 🧠 Por que isso é importante?
+
+Evita isso:
+
+```ts
+if (profile === 'admin') ...
+```
+
+💡 Centraliza a decisão
+
+---
+
+### 🧱 4️⃣ Use Cases (Application Layer)
+
+Aqui acontece o fluxo do sistema.
+
+🧾 **SignupUseCase**
+
+```ts
+async execute(profile, user)
+```
+---
+
+#### 🧠 Fluxo completo
+
+1️⃣ Verifica se email existe
+2️⃣ Cria command
+3️⃣ Executa transformação
+4️⃣ Salva no banco
+
+#### 📌 Código importante
+
+```ts
+const command = this.commandFactory.makeFeaturesSignup(profile, user);
+```
+
+👉 Cria o command correto
+
+```ts
+command.toJSON()
+```
+
+👉 Aplica a lógica
+
+```ts
+userModel.create(...)
+```
+
+👉 Persiste no banco
+
+---
+
+🔄 **ChangeUseCase**
+
+```ts
+execute(profile, id)
+```
+
+---
+
+#### 🧠 Fluxo
+
+1️⃣ Busca usuário
+2️⃣ Aplica novo command
+3️⃣ Atualiza
+
+💡 Aqui você reaproveita o mesmo Command
+
+---
+
+### 🏗️ Infra (Banco fake)
+
+📁 UserModel
+
+```ts
+private db: Map<string, User>
+```
+
+---
+
+#### 🧠 O que é Map?
+estrutura chave → valor
+substitui banco
+
+📌 create()
+
+```ts
+const id = uuidv7();
+```
+
+👉 gera ID único
+
+```ts
+📌 update()
+```
+
+👉 atualiza dados
+
+---
+
+### 🏭 ModelFactory
+
+```ts
+makeUser()
+```
+
+#### 🧠 O que isso faz?
+
+👉 cria ou reutiliza o model
+
+💡 padrão simples de factory + singleton
+
+---
+
+### 🧪 Testes (validação do comportamento)
+
+#### 🧠 Exemplo importante
+
+```ts
+guest → user
+```
+
+
+#### Fluxo testado
+
+1️⃣ Cria guest
+2️⃣ Muda para user
+3️⃣ Verifica permissões
+
+💡 Prova que Command funciona
+
+---
+
+### 🧠 Conceitos de POO aplicados
+
+| Conceito          | Onde aparece                      |
+| ----------------- | --------------------------------- |
+| Encapsulamento    | `#role`, `#data`                  |
+| Abstração         | interface `FeaturesSignupCommand` |
+| Polimorfismo      | commands diferentes               |
+| Baixo acoplamento | UseCase não conhece implementação |
+| Open/Closed       | novos profiles sem alterar código |
+
+---
+
+### 🧠 Conceitos de TypeScript usados
+
+| Conceito       | Explicação         |
+| -------------- | ------------------ |
+| interface      | define contrato    |
+| private        | encapsulamento     |
+| readonly       | imutabilidade      |
+| #private       | privacidade real   |
+| zod            | validação          |
+| type inference | tipagem automática |
+
+---
+
+### 🚀 Benefícios do Command neste projeto
+
+✅ Remove if/else
+✅ Centraliza regras
+✅ Facilita testes
+✅ Alta escalabilidade
+✅ Reuso de lógica
+✅ Código organizado
+
+---
+
+### ⚠️ Quando NÃO usar Command
+
+- Lógica simples
+- Sem variação de comportamento
+- Overengineering
+
+---
+
+### 🧠 Resumo do Command
+
+| Parte             | Função            |
+| ----------------- | ----------------- |
+| Command Interface | define contrato   |
+| Concrete Command  | implementa lógica |
+| Factory           | escolhe command   |
+| Use Case          | executa fluxo     |
+
+---
+
+### 📝 Conclusão
+
+O Command Pattern neste projeto foi utilizado de forma mais avançada:
+
+👉 Não para executar ações
+👉 Mas para construir dados de forma inteligente e desacoplada
+
+Isso permite:
+
+- separar regras de negócio
+- evitar if/else
+- criar código escalável
+- aplicar princípios SOLID
+
+---
+
+💡 Insight final (nível avançado)
+
+Esse projeto mistura:
+
+- Command Pattern
+- Factory Pattern
+- Strategy (indiretamente)
+- Clean Architecture
