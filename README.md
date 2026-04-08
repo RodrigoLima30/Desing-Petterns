@@ -1,37 +1,25 @@
 # 🧠 Design Patterns with TypeScript
 
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.0+-blue.svg)](https://www.typescriptlang.org/)
+[![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
+
 ## 📌 Sobre este repositório
 
 Este repositório tem como objetivo **ensinar Design Patterns na prática**, utilizando **TypeScript** e exemplos simples, claros e testáveis.
 
 A ideia não é apenas mostrar código, mas **explicar o motivo por trás das soluções**, ajudando a desenvolver uma visão mais sólida de arquitetura de software.
 
-Todos os exemplos foram pensados para serem:
+### ✅ O que você vai encontrar aqui
 
-- simples de entender
-- fáceis de testar
-- aplicáveis em projetos reais
-
----
-
-## 📚 Conteúdo do repositório
-
-Neste repositório você encontrará explicações e implementações práticas de alguns dos **Design Patterns mais importantes da programação orientada a objetos**.
-
-Você aprenderá:
-
-- O que são **Design Patterns**
-- Por que eles existem
-- Quando utilizar cada padrão
-- Como aplicar **POO na prática**
-- Como evitar código difícil de manter
-- Como escrever código **flexível, extensível e testável**
-
-Patterns abordados neste repositório:
-
-- **Strategy Pattern**
-- **Template Method Pattern**
-- *(outros podem ser adicionados futuramente)*
+| Tipo | Descrição |
+|------|-----------|
+| 📖 **Explicações detalhadas** | Problema, solução, estrutura, trade-offs |
+| 💻 **Código prático** | Implementações completas com TypeScript |
+| 🧪 **Testes unitários** | Exemplos com Jest para cada padrão |
+| 🎯 **Conceitos de POO** | SOLID, encapsulamento, polimorfismo, herança |
+| ⚠️ **Armadilhas comuns** | Quando NÃO usar cada padrão |
+| 🔧 **Dicas de TypeScript** | `#` privado, `as const`, getters, etc. |
 
 ---
 
@@ -39,14 +27,29 @@ Patterns abordados neste repositório:
 
 Este repositório é ideal para:
 
-- Desenvolvedores **iniciantes ou intermediários**
-- Pessoas estudando **Programação Orientada a Objetos (POO)**
-- Quem quer entender **arquitetura de software**
-- Quem deseja escrever **código mais limpo e escalável**
-- Quem quer aprender **Design Patterns na prática**
+- 🟢 Desenvolvedores **iniciantes ou intermediários**
+- 🟢 Pessoas estudando **Programação Orientada a Objetos (POO)**
+- 🟢 Quem quer entender **arquitetura de software**
+- 🟢 Quem deseja escrever **código mais limpo e escalável**
+- 🟢 Quem quer aprender **Design Patterns na prática**
 
-Não é necessário conhecimento avançado.  
-Os exemplos foram construídos para serem **didáticos e progressivos**.
+> **Não é necessário conhecimento avançado.** Os exemplos foram construídos para serem **didáticos e progressivos**.
+
+---
+
+## 📚 Índice de Padrões Implementados
+
+| Categoria | Padrão | Arquivo | Status |
+|-----------|--------|---------|--------|
+| **Behavioral** | Strategy | `design-pattern/1-strategy` | ✅ Completo |
+| **Behavioral** | Template Method | `design-pattern/2-template-method` | ✅ Completo |
+| **Behavioral** | State | `design-pattern/3-state` | ✅ Completo |
+| **Behavioral** | Chain of Responsibility | `design-pattern/4-chain` | ✅ Completo |
+| **Behavioral** | Command | `design-pattern/5-command` | ✅ Completo |
+| **Creational** | Factory Method | `design-pattern/6-factory` | 🛠️ Em andamento |
+| **Structural** | Adapter | `design-pattern/7-adapter` | 📋 Planejado |
+| **Structural** | Decorator | `design-pattern/8-decorator` | 📋 Planejado |
+| **Behavioral** | Observer | `design-pattern/9-observer` | 📋 Planejado |
 
 ---
 
@@ -58,13 +61,9 @@ Os exemplos foram construídos para serem **didáticos e progressivos**.
 
 Eles representam **boas práticas de arquitetura**, descobertas e refinadas ao longo de muitos anos pela comunidade de desenvolvedores.
 
-É importante entender que Design Patterns:
-
-- **não são frameworks**
-- **não são bibliotecas**
-- **não são códigos prontos**
-
-👉 Eles são **formas comprovadas de estruturar código para resolver problemas comuns**.
+> ⚠️ **Importante:** Design Patterns **não são frameworks, bibliotecas ou códigos prontos**.
+> 
+> 👉 Eles são **formas comprovadas de estruturar código** para resolver problemas comuns.
 
 ---
 
@@ -72,22 +71,16 @@ Eles representam **boas práticas de arquitetura**, descobertas e refinadas ao l
 
 Durante a evolução da engenharia de software, desenvolvedores perceberam que **os mesmos tipos de problemas apareciam repetidamente** em diferentes sistemas.
 
-Por exemplo:
+### Exemplos típicos:
 
-- Como trocar comportamentos sem alterar código existente?
-- Como evitar grandes blocos de `if/else`?
-- Como organizar responsabilidades entre classes?
-- Como tornar um sistema mais fácil de estender?
+| Problema | O que se busca |
+|----------|----------------|
+| Como trocar comportamentos sem alterar código existente? | **Flexibilidade** |
+| Como evitar grandes blocos de `if/else`? | **Manutenibilidade** |
+| Como organizar responsabilidades entre classes? | **Baixo acoplamento** |
+| Como tornar um sistema mais fácil de estender? | **Extensibilidade** |
 
-Ao longo do tempo, algumas soluções se mostraram **mais eficientes e mais elegantes**.
-
-Essas soluções começaram a ser:
-
-1. Identificadas
-2. Documentadas
-3. Nomeadas
-
-Assim surgiram os **Design Patterns**.
+Ao longo do tempo, algumas soluções se mostraram **mais eficientes e mais elegantes**. Essas soluções foram **identificadas, documentadas, nomeadas** e formaram a base dos Design Patterns modernos.
 
 ---
 
@@ -95,7 +88,7 @@ Assim surgiram os **Design Patterns**.
 
 O conceito foi popularizado pelo famoso livro:
 
-**"Design Patterns: Elements of Reusable Object-Oriented Software" (1994)**
+> **"Design Patterns: Elements of Reusable Object-Oriented Software" (1994)**
 
 Escrito por:
 
@@ -104,62 +97,32 @@ Escrito por:
 - Ralph Johnson
 - John Vlissides
 
-Esse grupo ficou conhecido como **Gang of Four (GoF)**.
-
-O livro catalogou **23 padrões clássicos de design orientado a objetos**, que até hoje são amplamente utilizados.
+Esse grupo ficou conhecido como **Gang of Four (GoF)** e catalogou **23 padrões clássicos** de design orientado a objetos, que até hoje são amplamente utilizados.
 
 ---
 
 ## 🧠 O que um Design Pattern descreve?
 
-Um Design Pattern geralmente descreve:
+Um Design Pattern geralmente documenta:
 
-- Um **problema recorrente**
-- O **contexto onde ele acontece**
-- Uma **solução arquitetural**
-- As **consequências dessa solução**
+1. **Problema recorrente** – A situação que surge com frequência
+2. **Contexto onde ele acontece** – Restrições do ambiente
+3. **Solução arquitetural** – Estrutura de classes/objetos
+4. **Consequências** – Trade-offs, impactos, limitações
 
-Ou seja, um pattern não entrega apenas código — ele explica **como pensar o design do sistema**.
+> Ou seja, um pattern não entrega apenas código — ele explica **como pensar o design do sistema**.
 
 ---
 
 ## 🧠 Benefícios dos Design Patterns
 
-Aplicar Design Patterns corretamente traz diversos benefícios:
-
-### 📌 Código mais legível
-
-O código fica mais organizado e fácil de entender.
-
----
-
-### 📌 Menor acoplamento
-
-As partes do sistema ficam **menos dependentes umas das outras**.
-
----
-
-### 📌 Maior flexibilidade
-
-Novos comportamentos podem ser adicionados **sem modificar código existente**.
-
----
-
-### 📌 Facilidade de manutenção
-
-Alterações futuras se tornam **mais simples e seguras**.
-
----
-
-### 📌 Melhor comunicação entre desenvolvedores
-
-Design Patterns criam **uma linguagem comum** entre programadores.
-
-Por exemplo:
-
-> "Esse módulo utiliza Strategy Pattern."
-
-Um desenvolvedor experiente já entende **qual é a intenção da arquitetura**.
+| Benefício | Descrição |
+|-----------|-----------|
+| 📌 **Código mais legível** | O código fica mais organizado e fácil de entender |
+| 📌 **Menor acoplamento** | As partes do sistema ficam menos dependentes |
+| 📌 **Maior flexibilidade** | Novos comportamentos adicionados sem modificar código existente |
+| 📌 **Facilidade de manutenção** | Alterações futuras se tornam mais simples e seguras |
+| 📌 **Comunicação eficiente** | "Esse módulo usa Strategy" - todos entendem a intenção |
 
 ---
 
@@ -169,11 +132,11 @@ Apesar de serem extremamente úteis, Design Patterns **não devem ser usados em 
 
 Aplicar patterns sem necessidade pode:
 
-- aumentar a complexidade
-- dificultar a leitura do código
-- criar abstrações desnecessárias
+- ❌ aumentar a complexidade
+- ❌ dificultar a leitura do código
+- ❌ criar abstrações desnecessárias
 
-👉 O objetivo de um Design Pattern é **simplificar o design**, não complicá-lo.
+> 👉 O objetivo de um Design Pattern é **simplificar o design**, não complicá-lo.
 
 ---
 
@@ -181,18 +144,19 @@ Aplicar patterns sem necessidade pode:
 
 A melhor forma de aprender Design Patterns é:
 
-1️⃣ Entender o **problema original**  
-2️⃣ Ver **por que a solução ingênua falha**  
-3️⃣ Aplicar o **pattern como solução**
+| Passo | O que fazer |
+|-------|-------------|
+| 1️⃣ | Entender o **problema original** |
+| 2️⃣ | Ver **por que a solução ingênua falha** |
+| 3️⃣ | **Aplicar o pattern** como solução |
+| 4️⃣ | **Analisar as consequências** |
+| 5️⃣ | **Aprender os princípios SOLID** envolvidos |
 
 Por isso este repositório sempre segue esta estrutura:
 
-1. **Problema**
-2. **Violação de boas práticas**
-3. **Aplicação do Design Pattern**
-4. **Explicação dos conceitos de POO envolvidos**
-
-Assim fica mais fácil entender **não apenas como usar um pattern, mas quando usar**.
+```text
+Problema → Violação de boas práticas → Aplicação do Pattern → Explicação POO
+```
 
 ---
 
