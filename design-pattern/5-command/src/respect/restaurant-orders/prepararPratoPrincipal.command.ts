@@ -10,6 +10,7 @@ export class PrepararPratoPrincipalCommand implements Command {
     }
 
     desfazer(): void {
+        this.cozinha.cancelarPrato(this.prato);
         console.log(`Desfazendo a preparação do prato "${this.prato}".`);
     }
     

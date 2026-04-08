@@ -7,9 +7,11 @@ export class PrepararSobremesaCommand implements Command {
 
     executar(): void {
         this.cozinha.prepararSobremesa(this.sobremesa);
+        console.log(`PrepararSobremesaCommand: Sobremesa "${this.sobremesa}" em preparação.`);
     }
 
     desfazer(): void {
+        this.cozinha.cancelarPrato(this.sobremesa);
         console.log(`Desfazendo a preparação da sobremesa "${this.sobremesa}".`);
     }
 
