@@ -1,23 +1,28 @@
-import type { CommandFactory } from "../../domain/factory/command-factory";
-import type { ModelFactory } from "../../infra/factory/model-factory";
 import type { Profile } from "../../data/profile-data";
-import type { User } from "../../data/user-data";
-import type { UserModel } from "../../infra/model/user-model";
+import { User } from "../../domain/entity/user-entity";
+import type { CommandFactory } from "../../domain/factory/command-factory";
+import type { IUserRepository } from "../../domain/repository/user-repository";
 
 export class ChangeUseCase {
-  private readonly userModel: UserModel
-  
-  constructor(private readonly modelFactory: ModelFactory, private readonly commandFactory: CommandFactory) {
-    this.userModel = this.modelFactory.makeUser();
-  }
+  constructor(
+    private readonly userRepository: IUserRepository,
+    private readonly commandFactory: CommandFactory
+  ) {}
 
   async execute(profile: Profile, id: string): Promise<User> {
-    const user = await this.userModel.findById(id);
+    const user = await this.userRepository.findById(id);
+
     if (!user) {
-      throw new Error('User not found');
+      throw new Error("User not found");
     }
-    const command = this.commandFactory.makeFeaturesSignup(profile, user);
-    const data = await this.userModel.update(command.toJSON());
-    return data
+
+    const command = this.commandFactory.makeFeaturesSignup(
+      profile,
+      user.toJSON()
+    );
+
+    const updatedUser = new User(command.toJSON());
+
+    return await this.userRepository.update(updatedUser);
   }
 }

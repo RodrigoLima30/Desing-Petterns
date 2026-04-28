@@ -1,12 +1,12 @@
 import type { FeaturesSignupCommand } from "../../data/command-data";
 import { type Role, adminRoleDefault } from "../../data/role-data";
-import { type User, userSchema } from "../../data/user-data";
+import { type UserProps, userSchema } from "../../data/user-data";
 
 export class AdminFeaturesSignupCommand implements FeaturesSignupCommand {
   #role: Role
-  #data: User
+  #data: UserProps
   
-  constructor(private readonly model: User) {
+  constructor(private readonly model: UserProps) {
     this.#role = adminRoleDefault;
     this.#data = userSchema.parse({
       ...model,
@@ -14,7 +14,7 @@ export class AdminFeaturesSignupCommand implements FeaturesSignupCommand {
     })
   }
 
-  toJSON(): User {
+  toJSON(): UserProps {
     return this.#data;
   }
 }

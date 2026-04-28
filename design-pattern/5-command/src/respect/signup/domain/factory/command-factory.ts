@@ -2,11 +2,11 @@ import { AdminFeaturesSignupCommand } from "../command/admin-feature-signup-comm
 import type { FeaturesSignupCommand } from "../../data/command-data";
 import { GuestFeaturesSignupCommand } from "../command/guest-feature-signup-command";
 import type { Profile } from "../../data/profile-data";
-import type { User } from "../../data/user-data";
+import type { UserProps } from "../../data/user-data";
 import { UserFeaturesSignupCommand } from "../command/user-feature-signup-command";
 
 export class CommandFactory {
-  makeFeaturesSignup(profile: Profile, user: User): FeaturesSignupCommand {
+  makeFeaturesSignup(profile: Profile, user: UserProps): FeaturesSignupCommand {
     switch (profile) {
       case 'admin':
         return new AdminFeaturesSignupCommand(user);

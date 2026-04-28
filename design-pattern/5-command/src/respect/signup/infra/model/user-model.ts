@@ -1,10 +1,10 @@
 import { uuidv7 } from "uuidv7";
-import { type User, userSchema } from "../../data/user-data";
+import { type UserProps, userSchema } from "../../data/user-data";
 
 export class UserModel {
-  private db: Map<string, User> = new Map();
+  private db: Map<string, UserProps> = new Map();
 
-  async create(user: User): Promise<User> {
+  async create(user: UserProps): Promise<UserProps> {
     userSchema.parse(user);
     const id = uuidv7();
     const newUser = { ...user, id };
@@ -12,7 +12,7 @@ export class UserModel {
     return newUser;
   }
 
-  async findById(id: string): Promise<User> {
+  async findById(id: string): Promise<UserProps> {
     const user = this.db.get(id);
     if (!user) {
       throw new Error('User not found');
@@ -20,7 +20,7 @@ export class UserModel {
     return user;
   }
 
-  async findByEmail(email: string): Promise<User | null> {
+  async findByEmail(email: string): Promise<UserProps | null> {
     const user = this.db.values().find((user) => user.email === email);
     if (!user) {
       return null;
@@ -28,7 +28,7 @@ export class UserModel {
     return user;
   }
 
-  async update(payload: User): Promise<User> {
+  async update(payload: UserProps): Promise<UserProps> {
     const user = await this.findByEmail(payload.email);
     if (!user || !user.id) {
       throw new Error('User not found');

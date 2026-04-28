@@ -1,23 +1,27 @@
-import type { CommandFactory } from "../../domain/factory/command-factory";
-import type { ModelFactory } from "../../infra/factory/model-factory";
+
 import type { Profile } from "../../data/profile-data";
-import type { User } from "../../data/user-data";
-import type { UserModel } from "../../infra/model/user-model";
+import type { UserProps } from "../../data/user-data";
+import { User } from "../../domain/entity/user-entity";
+import type { CommandFactory } from "../../domain/factory/command-factory";
+import type { IUserRepository } from "../../domain/repository/user-repository";
 
 export class SignupUseCase {
-  private readonly userModel: UserModel
-  
-  constructor(private readonly modelFactory: ModelFactory, private readonly commandFactory: CommandFactory) {
-    this.userModel = this.modelFactory.makeUser();
-  }
+  constructor(
+    private readonly userRepository: IUserRepository,
+    private readonly commandFactory: CommandFactory
+  ) {}
 
-  async execute(profile: Profile, user: User): Promise<User> {
-    const existingUser = await this.userModel.findByEmail(user.email);
+  async execute(profile: Profile, input: UserProps): Promise<User> {
+    const existingUser = await this.userRepository.findByEmail(input.email);
+
     if (existingUser) {
-      throw new Error('Email already in use');
+      throw new Error("Email already in use");
     }
-    const command = this.commandFactory.makeFeaturesSignup(profile, user);
-    const data = await this.userModel.create(command.toJSON());
-    return data
+
+    const command = this.commandFactory.makeFeaturesSignup(profile, input);
+
+    const user = new User(command.toJSON());
+
+    return await this.userRepository.create(user);
   }
 }

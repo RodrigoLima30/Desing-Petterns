@@ -1,12 +1,12 @@
 import type { FeaturesSignupCommand } from "../../data/command-data";
 import { type Role, guestRoleDefault } from "../../data/role-data";
-import { type User, userSchema } from "../../data/user-data";
+import { type UserProps, userSchema } from "../../data/user-data";
 
 export class GuestFeaturesSignupCommand implements FeaturesSignupCommand {
   #role: Role
-  #data: User
+  #data: UserProps
   
-  constructor(private readonly model: User) {
+  constructor(private readonly model: UserProps) {
     this.#role = guestRoleDefault;
     this.#data = userSchema.parse({
       ...model,
@@ -14,7 +14,7 @@ export class GuestFeaturesSignupCommand implements FeaturesSignupCommand {
     })
   }
 
-  toJSON(): User {
+  toJSON(): UserProps {
     return this.#data;
   }
 }

@@ -8,4 +8,4 @@ export const userSchema = z.object({
   role: roleSchema.optional()
 })
 
-export type User = z.infer<typeof userSchema>
+export type UserProps = z.infer<typeof userSchema>
