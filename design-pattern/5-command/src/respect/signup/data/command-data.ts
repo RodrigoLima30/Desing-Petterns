@@ -1,5 +1,5 @@
-import type { User } from "./user-data";
+import type { User } from "../domain/entity/user-entity";
 
 export interface FeaturesSignupCommand {
-  toJSON(): User
+  toJSON(): User;
 }
