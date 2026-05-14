@@ -1,4 +1,3 @@
-
 import type { Profile } from "../../data/profile-data";
 import type { UserProps } from "../../data/user-data";
 import { User } from "../../domain/entity/user-entity";
@@ -19,7 +18,7 @@ export class SignupUseCase {
     }
 
     const userInstance = new User(input);
-    const command = this.commandFactory.makeFeaturesSignup(profile, userInstance);
+    const command = this.commandFactory.makeFeatureExpense(profile, userInstance);
 
     const user = new User(command.toJSON());
 

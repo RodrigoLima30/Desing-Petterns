@@ -3,12 +3,10 @@ import { UserRepository } from "../../infra/repository/user-repository";
 import { ChangeUseCase } from "../usecase/change-usecase";
 import { SignupUseCase } from "../usecase/signup-usecase";
 
-
 export class UseCaseFactory {
-  
-  private userRepository = new UserRepository();
+    private userRepository = new UserRepository();
 
-  constructor(
+    constructor(
     private readonly commandFactory: CommandFactory
   ) {}
 

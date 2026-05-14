@@ -1,6 +1,5 @@
 import type { FeatureExpenseCommand } from "../../data/command-data";
 import { directorRoleDefault, type Role } from "../../data/role-data";
-import { userSchema } from "../../data/user-data";
 import { User } from "../entity/user-entity";
 
 export class DirectorFeatureExpenseCommand implements FeatureExpenseCommand {
@@ -15,7 +14,7 @@ export class DirectorFeatureExpenseCommand implements FeatureExpenseCommand {
     });
   }
 
-  toJSON(): User {
-    return this.#data;
+  toJSON(): Readonly<UserProps> {
+    return this.#data.toJSON();
   }
 }

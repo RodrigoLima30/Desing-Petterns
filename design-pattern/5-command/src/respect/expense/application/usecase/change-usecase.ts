@@ -16,7 +16,7 @@ export class ChangeUseCase {
       throw new Error("User not found");
     }
 
-    const command = this.commandFactory.makeFeaturesSignup(
+    const command = this.commandFactory.makeFeatureExpense(
       profile,
       user
     );

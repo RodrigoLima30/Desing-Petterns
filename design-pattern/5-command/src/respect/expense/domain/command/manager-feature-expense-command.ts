@@ -14,7 +14,7 @@ export class ManagerFeatureExpenseCommand implements FeatureExpenseCommand {
     });
   }
 
-  toJSON(): User {
-    return this.#data;
+  toJSON(): Readonly<UserProps> {
+    return this.#data.toJSON();
   }
 }
