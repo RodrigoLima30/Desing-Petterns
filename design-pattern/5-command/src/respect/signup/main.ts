@@ -2,9 +2,8 @@ import { UseCaseFactory } from "./application/factory/usecase-factory";
 import { CommandFactory } from "./domain/factory/command-factory";
 import { ModelFactory } from "./infra/factory/model-factory";
 
-const modelFactory = new ModelFactory();
 const commandFactory = new CommandFactory();
-const useCaseFactory = new UseCaseFactory(modelFactory, commandFactory);
+const useCaseFactory = new UseCaseFactory(commandFactory);
 
 // /api/v1/signup/admin
 const signupAdmin = useCaseFactory.makeSignup();
@@ -39,6 +38,6 @@ console.log('guest', guest);
 // /api/v1/profile/change
 const changeProfile = useCaseFactory.makeChange();
 
-const updatedUser = await changeProfile.execute('user', guest.id!);
+const updatedUser = await changeProfile.execute('user', guest.data.id!);
 
 console.log('guest to user', updatedUser);
